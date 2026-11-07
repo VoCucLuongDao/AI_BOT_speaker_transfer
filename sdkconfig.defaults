@@ -1,0 +1,10 @@
+# ESP-NOW + Bluetooth Classic coexistence needs more IRAM than the A2DP-only
+# build.  Moving the WiFi hot path to flash frees ~10 KB of IRAM and keeps the
+# link step below the IRAM limit (the generated sdkconfig.esp32dev has the same
+# values; keep them in sync if you ever delete it).
+CONFIG_ESP_WIFI_IRAM_OPT=n
+CONFIG_ESP_WIFI_RX_IRAM_OPT=n
+
+# Chi dung Bluetooth Classic (A2DP/AVRCP). Tat BLE host stack de giai phong
+# SRAM cho A2DP media buffers - board chi co 320 KB RAM, khong co PSRAM.
+CONFIG_BT_BLE_ENABLED=n
